@@ -13,10 +13,10 @@ const ChatWindow = ({ chatHistory, onEstimateRequest, fileUploaded, file, mockJs
     setLoading(true);
 
     try {
-     
-      setTimeout(async() => {
+
+      setTimeout(async () => {
         setLoading(false);
-         await onEstimateRequest();
+        await onEstimateRequest();
       }, 5000);
     } catch (error) {
       console.error("Error requesting estimate:", error);
@@ -25,13 +25,9 @@ const ChatWindow = ({ chatHistory, onEstimateRequest, fileUploaded, file, mockJs
   };
   useEffect(() => {
     if (fileUploaded) {
-      // setTimeout(() => {
-        handleEstimateClick();
-      // }, 3000);
-
-
+      handleEstimateClick();
     }
-  }, [fileUploaded]);
+  }, [fileUploaded, file]);
 
 
 
@@ -42,45 +38,45 @@ const ChatWindow = ({ chatHistory, onEstimateRequest, fileUploaded, file, mockJs
       animate={{ opacity: 1, y: 0 }}
     >
       <h1 className="text-2xl font-semibold text-center">Welcome to ConstructIQ</h1>
-     {
-      chatHistory.length === 0 && (
-        <div className="flex items-center justify-center h-[calc(100vh-300px)] w-2xl mx-auto text-center text-[#727171]">
-          <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint ullam libero aliquid itaque fugit ipsum hic neque doloremque! Repudiandae temporibus aperiam eveniet ipsa reiciendis? Impedit eveniet quidem tempore sint atque?
-      </p>
+      {
+        chatHistory.length === 0 && (
+          <div className="flex items-center justify-center h-[calc(100vh-300px)] w-2xl mx-auto text-center text-[#727171]">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint ullam libero aliquid itaque fugit ipsum hic neque doloremque! Repudiandae temporibus aperiam eveniet ipsa reiciendis? Impedit eveniet quidem tempore sint atque?
+            </p>
           </div>
-      )
-     }
+        )
+      }
 
       <div className="space-y-2">
         {chatHistory.map((msg, i) => (
 
-          <>
-           
-          
-            <div class={`flex items-start gap-2.5 ${msg.sender === "user"
+          <div key={i}>
+
+
+            <div className={`flex items-start gap-2.5 ${msg.sender === "user"
               && " justify-start flex-row-reverse ml-auto"
               }`}>
-              <img class="w-8 h-8 rounded-full object-cover" src="https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fHww" alt="Joh image" />
-              <div class="flex flex-col gap-1 w-full max-w-fit">
-                <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                  <span class="text-sm font-semibold text-white ">{msg.name}</span>
+              <img className="w-8 h-8 rounded-full object-cover" src="https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29ufGVufDB8fDB8fHww" alt="Joh image" />
+              <div className="flex flex-col gap-1 w-full max-w-fit">
+                <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                  <span className="text-sm font-semibold text-white ">{msg.name}</span>
                 </div>
-                <div class={`flex flex-col p-4 border-gray-700 bg-gray-700  dark:bg-gray-700  ${msg.sender === "user"
-              ? " rounded-tl-xl rounded-bl-xl rounded-br-xl" : " rounded-e-xl rounded-es-xl"}`}>
+                <div className={`flex flex-col p-4 border-gray-700 bg-gray-700  dark:bg-gray-700  ${msg.sender === "user"
+                  ? " rounded-tl-xl rounded-bl-xl rounded-br-xl" : " rounded-e-xl rounded-es-xl"}`}>
                   {
                     msg.type === 'estimate' && (
                       <EstimateRenderer data={mockJson} />
                     )
                   }
-                  <p class="text-[12px] font-normal text-white mb-4"> {msg.text}</p>
+                  <p className="text-[12px] font-normal text-white mb-4"> {msg.text}</p>
 
                   {
                     msg.type === "file" && (
-                      <div class="flex items-start bg-gray-600 rounded-xl p-2">
-                        <div class="me-2">
-                          <span class="flex items-center gap-2 text-sm font-medium text-white pb-2">
-                            <svg fill="none" aria-hidden="true" class="w-5 h-5 shrink-0" viewBox="0 0 20 21">
+                      <div className="flex items-start bg-gray-600 rounded-xl p-2">
+                        <div className="me-2">
+                          <span className="flex items-center gap-2 text-sm font-medium text-white pb-2">
+                            <svg fill="none" aria-hidden="true" className="w-5 h-5 shrink-0" viewBox="0 0 20 21">
                               <g clip-path="url(#clip0_3173_1381)">
                                 <path fill="#E2E5E7" d="M5.024.5c-.688 0-1.25.563-1.25 1.25v17.5c0 .688.562 1.25 1.25 1.25h12.5c.687 0 1.25-.563 1.25-1.25V5.5l-5-5h-8.75z" />
                                 <path fill="#B0B7BD" d="M15.024 5.5h3.75l-5-5v3.75c0 .688.562 1.25 1.25 1.25z" />
@@ -103,20 +99,19 @@ const ChatWindow = ({ chatHistory, onEstimateRequest, fileUploaded, file, mockJs
                       </div>
                     )}
                 </div>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{msg.time}</span>
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">{msg.time}</span>
 
               </div>
 
             </div>
 
- {
-            loading && (
+            {loading && i === chatHistory.length - 1 && (
               <div>
                 <AILoader />
               </div>
-            )
-            }
-          </>
+            )}
+
+          </div>
         ))}
       </div>
     </motion.div>

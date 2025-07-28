@@ -7,17 +7,17 @@ import { toast } from "react-toastify";
 const FileUpload = ({ file, setFile }) => {
   const [isDragging, setIsDragging] = useState(false);
 
- const handleFileChange = (e) => {
-  const uploaded = e.target.files[0];
-  if (uploaded) {
-    if (uploaded.type === "application/pdf") {
-      setFile(uploaded);
-    } else {
-      toast.error("Only PDF files are allowed.");
-      e.target.value = ""; 
+  const handleFileChange = (e) => {
+    const uploaded = e.target.files[0];
+    if (uploaded) {
+      if (uploaded.type === "application/pdf") {
+        setFile(uploaded);
+      } else {
+        toast.error("Only PDF files are allowed.");
+        e.target.value = "";
+      }
     }
-  }
-};
+  };
 
 
   const handleDrop = (e) => {
@@ -46,8 +46,6 @@ const FileUpload = ({ file, setFile }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      {/* <h2 className="text-xl font-semibold text-gray-800">Upload Project PDF</h2> */}
-
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
@@ -63,14 +61,14 @@ const FileUpload = ({ file, setFile }) => {
           id="file-upload"
         />
         <label htmlFor="file-upload" className="flex flex-col items-center justify-center  cursor-pointer ">
-          
-            <>
-              <UploadCloud className="w-10 h-10 text-blue-500 mb-2" />
-              <p className="text-white text-sm">
-                Click or drag & drop a PDF file here
-              </p>
-            </>
-          
+
+          <>
+            <UploadCloud className="w-10 h-10 text-blue-500 mb-2" />
+            <p className="text-white text-sm">
+              Click or drag & drop a PDF file here
+            </p>
+          </>
+
         </label>
       </div>
 

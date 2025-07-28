@@ -31,38 +31,34 @@ function App() {
 
   console.log('chatHistory', chatHistory)
   const getCurrentTime = () => {
-  const now = new Date();
+    const now = new Date();
 
-  let hours = now.getHours();
-  const minutes = now.getMinutes();
-  const ampm = hours >= 12 ? 'pm' : 'am';
+    let hours = now.getHours();
+    const minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'pm' : 'am';
 
-  hours = hours % 12 || 12; // convert 0 to 12 for 12-hour format
-  const paddedMinutes = minutes.toString().padStart(2, '0');
+    hours = hours % 12 || 12;
+    const paddedMinutes = minutes.toString().padStart(2, '0');
 
-  return `${hours}:${paddedMinutes} ${ampm}`;
-};
+    return `${hours}:${paddedMinutes} ${ampm}`;
+  };
 
-useEffect(() => {
-  if(estimate){
-    setChatHistory((prev) => [...prev, { sender: 'agent', name: 'Bela AI', text: '', time: getCurrentTime(), type : 'estimate' }]);
-    setEstimate(null);
-  }
-}, [estimate]);
+  useEffect(() => {
+    if (estimate) {
+      setChatHistory((prev) => [...prev, { sender: 'agent', name: 'Bela AI', text: '', time: getCurrentTime(), type: 'estimate' }]);
+      setEstimate(null);
+    }
+  }, [estimate]);
 
   useEffect(() => {
     if (file) {
-      setChatHistory((prev) => [...prev, { sender: 'user', name: 'John Doe', text: 'Please estimate this project', file: file, type: 'file',time: getCurrentTime() }]);
+      setChatHistory((prev) => [...prev, { sender: 'user', name: 'John Doe', text: 'Please estimate this project', file: file, type: 'file', time: getCurrentTime() }]);
     }
   }, [file]);
 
   const handleEstimateRequest = () => {
-    // setChatHistory((prev) => [...prev, { sender: 'user', text: 'Please estimate this project.',time: getCurrentTime() }]);
     setTimeout(() => {
-      // setChatHistory((prev) => [...prev, { sender: 'agent', text: 'Estimate ready. Displaying results...', time: getCurrentTime() }]);
       setEstimate(mockJson);
-
-      
     }, 1000);
   };
 
@@ -71,7 +67,6 @@ useEffect(() => {
       <div className="w-full space-y-6">
         <div className="h-[calc(100vh-160px)]">
           <ChatWindow chatHistory={chatHistory} onEstimateRequest={handleEstimateRequest} fileUploaded={!!file} file={file} mockJson={mockJson} />
-          {/* {estimate && <EstimateRenderer data={estimate} />} */}
         </div>
         <div className=''>
           <FileUpload file={file} setFile={setFile} />
