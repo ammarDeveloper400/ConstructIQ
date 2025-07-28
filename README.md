@@ -1,12 +1,29 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# ConstructIQ UI – AI Estimation Chat Interface (Frontend Only)
+ConstructIQ UI is a standalone frontend component that simulates AI-powered construction project estimation. It allows users to upload a document (PDF) and view mock AI-generated insights like valuation, risk flags, and confidence scores – all in an interactive chat-style interface.
+---
+## 📌 Key Highlights
+- ⚛️ **Built with React.js**
+- 🎨 **Styled with Tailwind CSS**
+- 💬 **Chat-style interface**
+- 📊 **Confidence meters**
+- 🚩 **Risk flag visualizations**
+- 📑 **Line item breakdown**
+- 🔄 **No backend required (mock AI logic)**
+---
+## 🧱 Tech Stack
+| Technology  | Description                                 |
+|-------------|---------------------------------------------|
+| React.js    | UI framework                                 |
+| Tailwind CSS| Utility-first styling framework              |
+| Framer Motion | Smooth animations                         |
+| Lucide Icons | Icon set used for UI elements               |
+---
+## 📁 Project Structure
+```bash
+📦components/
+ ┣ 📜ChatWindow.jsx          # Core UI logic and upload handling
+ ┣ 📜EstimateRenderer.jsx    # Main estimate display logic
+ ┣ 📜ConfidenceMeter.jsx     # Visual confidence meter
+ ┣ 📜RiskFlags.jsx           # Displays risk flags
+ ┣ 📜LineItemsTable.jsx      # Tabular item cost breakdown
+ ┗ 📜Loader.jsx              # Loading animation component
