@@ -15,7 +15,7 @@ const mockJson = {
     regional_benchmark: 0.81,
     data_density: 0.77,
   },
-  risk_flags: ["Above regional average", "Permit count below median for scope"],
+  risk_flags: ["Above regional averages", "Permit count below median for scope"],
   line_items: [
     { category: "Labor", estimate: 72000 },
     { category: "Materials", estimate: 89000 },
