@@ -51,7 +51,7 @@ const ChatWindow = ({ chatHistory, onEstimateRequest, fileUploaded, file, mockJs
       <div className="space-y-2">
         {chatHistory.map((msg, i) => (
 
-          <div key={i}>
+          <div key={msg?.id}>
 
 
             <div className={`flex items-start gap-2.5 ${msg.sender === "user"
@@ -91,7 +91,7 @@ const ChatWindow = ({ chatHistory, onEstimateRequest, fileUploaded, file, mockJs
                                 </clipPath>
                               </defs>
                             </svg>
-                            <span>{file.name}</span>
+                            <span>{msg?.file?.name}</span>
                           </span>
 
                         </div>

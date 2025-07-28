@@ -6,26 +6,45 @@ import { toast } from "react-toastify";
 
 const FileUpload = ({ file, setFile }) => {
   const [isDragging, setIsDragging] = useState(false);
+  const MAX_FILE_SIZE_MB = 10;
+  const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
 
   const handleFileChange = (e) => {
     const uploaded = e.target.files[0];
     if (uploaded) {
-      if (uploaded.type === "application/pdf") {
-        setFile(uploaded);
-      } else {
+      if (uploaded.type !== "application/pdf") {
         toast.error("Only PDF files are allowed.");
         e.target.value = "";
+        return;
       }
+
+      if (uploaded.size > MAX_FILE_SIZE_BYTES) {
+        toast.error("File size must be less than 10MB.");
+        e.target.value = "";
+        return;
+      }
+
+      setFile(uploaded);
     }
   };
-
 
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
+
     const droppedFile = e.dataTransfer.files[0];
-    if (droppedFile && droppedFile.type === "application/pdf") {
+    if (droppedFile) {
+      if (droppedFile.type !== "application/pdf") {
+        toast.error("Only PDF files are allowed.");
+        return;
+      }
+
+      if (droppedFile.size > MAX_FILE_SIZE_BYTES) {
+        toast.error("File size must be less than 10MB.");
+        return;
+      }
+
       setFile(droppedFile);
     }
   };
